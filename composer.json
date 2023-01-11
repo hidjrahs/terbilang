@@ -1,0 +1,19 @@
+{
+    "name": "hidjrahs/terbilang",
+    "description": "konversi angka menjadi text bahasa indonesia",
+    "type": "library",
+    "license": "MIT",
+    "authors": [{
+        "name": "Hidjrah Saputra",
+        "email": "hijrah2005@gmail.com"
+    }],
+    "autoload": {
+        "psr-4": {
+            "Hidjrahs\\Terbilang\\": "src"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.0"
+    }
+}
