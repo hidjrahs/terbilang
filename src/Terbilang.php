@@ -43,14 +43,14 @@ class Terbilang
     public function __construct($num = '', $sep = ',')
     {
         $this->separator = $sep;
-        $this->lihatTerbilang($num);
+        $this->Angka($num);
     }
 
     /**
      * @param  array $result
      * @return string
      */
-    public function getResult($result = [])
+    public function textAngka($result = [])
     {
         return $result ? strtr(
             rtrim(implode(' ', array_filter($result, 'strlen')), ' ,'),
@@ -95,7 +95,7 @@ class Terbilang
      * @return $this
      * @throws Exception
      */
-    public function lihatTerbilang($num = '', $sep = '')
+    public function Angka($num = '', $sep = '')
     {
         if ($num == '') {
             return $this;
@@ -116,19 +116,19 @@ class Terbilang
         }
 
         if (($sep_pos = strrpos($num, $sep))) {
-            $result[] = $this->getResult($this->read(substr($num, 0, $sep_pos))->result);
+            $result[] = $this->textAngka($this->read(substr($num, 0, $sep_pos))->result);
             $result[] = 'koma';
-            $result[] = $this->spell(substr($num, $sep_pos))->getResult();
+            $result[] = $this->spell(substr($num, $sep_pos))->textAngka();
         } else {
             $sep_alt = $this->separators[array_search($sep, $this->separators) ^ 1];
             $sep_alt_pos = strpos($num, $sep_alt);
 
             if ($sep_alt_pos && strpos($num, '0') === 0 || substr_count($num, $sep_alt) == 1 && strlen(substr($num, $sep_alt_pos)) != 4) {
-                $result[] = $this->getResult($this->read(substr($num, 0, $sep_alt_pos))->result);
+                $result[] = $this->textAngka($this->read(substr($num, 0, $sep_alt_pos))->result);
                 $result[] = 'koma';
-                $result[] = $this->spell(substr($num, $sep_alt_pos))->getResult();
+                $result[] = $this->spell(substr($num, $sep_alt_pos))->textAngka();
             } else {
-                $result[] = $this->getResult($this->read($num)->result);
+                $result[] = $this->textAngka($this->read($num)->result);
             }
         }
 
